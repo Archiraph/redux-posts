@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PostForm from "./components/PostForm";
 import User from "./components/User";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Post from "./components/Post";
 import { isEmpty } from "./components/Utils";
+import { getPosts } from "./actions/post.action";
 
 const App = () => {
+  const dispatch = useDispatch();
   const posts = useSelector((state) => state.postReducer);
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
   return (
     <div>
@@ -14,11 +20,8 @@ const App = () => {
       <PostForm />
       <div className="content">
         <div className="post-container">
-          {Array.isArray(posts) && !isEmpty(posts) ? (
-            posts.map((post, index) => <Post post={post} key={index} />)
-          ) : (
-            <p>No posts available</p>
-          )}
+          {!isEmpty(posts) &&
+            posts.map((post, index) => <Post post={post} key={index} />)}
         </div>
         <User />
       </div>
