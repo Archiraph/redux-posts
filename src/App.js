@@ -14,8 +14,11 @@ const App = () => {
       <PostForm />
       <div className="content">
         <div className="post-container">
-          {!isEmpty(posts) &&
-            posts.map((post, index) => <Post post={post} key={index} />)}
+          {Array.isArray(posts) && !isEmpty(posts) ? (
+            posts.map((post, index) => <Post post={post} key={index} />)
+          ) : (
+            <p>No posts available</p>
+          )}
         </div>
         <User />
       </div>
