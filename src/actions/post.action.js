@@ -8,24 +8,28 @@ export const ADD_POST_LIKE = "ADD_POST_LIKE";
 
 export const getPosts = () => {
   return (dispatch) => {
-    return axios.get("http://localhost:3000/posts").then((res) => {
-      dispatch({ type: GET_POSTS, payload: res.data });
-    });
+    return axios
+      .get("https://redux-posts-rust.vercel.app/posts")
+      .then((res) => {
+        dispatch({ type: GET_POSTS, payload: res.data });
+      });
   };
 };
 
 export const addPost = (data) => {
   return (dispatch) => {
-    return axios.post("http://localhost:3000/posts", data).then((res) => {
-      dispatch({ type: ADD_POST, payload: data });
-    });
+    return axios
+      .post("https://redux-posts-rust.vercel.app/posts", data)
+      .then((res) => {
+        dispatch({ type: ADD_POST, payload: data });
+      });
   };
 };
 
 export const editPost = (data) => {
   return (dispatch) => {
     return axios
-      .put(`http://localhost:3000/posts/${data.id}`, data)
+      .put(`https://redux-posts-rust.vercel.app/${data.id}`, data)
       .then((res) => {
         dispatch({ type: EDIT_POST, payload: data });
       });
@@ -34,16 +38,18 @@ export const editPost = (data) => {
 
 export const deletePost = (postId) => {
   return (dispatch) => {
-    return axios.delete(`http://localhost:3000/posts/${postId}`).then((res) => {
-      dispatch({ type: DELETE_POST, payload: postId });
-    });
+    return axios
+      .delete(`https://redux-posts-rust.vercel.app/${postId}`)
+      .then((res) => {
+        dispatch({ type: DELETE_POST, payload: postId });
+      });
   };
 };
 
 export const addPostLike = (data) => {
   return (dispatch) => {
     return axios
-      .put(`http://localhost:3000/posts/${data.id}`, data)
+      .put(`https://redux-posts-rust.vercel.app/${data.id}`, data)
       .then((res) => {
         dispatch({ type: ADD_POST_LIKE, payload: data });
       });
