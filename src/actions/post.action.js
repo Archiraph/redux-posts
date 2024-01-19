@@ -9,7 +9,7 @@ export const ADD_POST_LIKE = "ADD_POST_LIKE";
 export const getPosts = () => {
   return (dispatch) => {
     return axios
-      .get("https://redux-posts-rust.vercel.app/posts")
+      .get("https://redux-posts-rust.vercel.app/db.json/posts")
       .then((res) => {
         dispatch({ type: GET_POSTS, payload: res.data });
       });
@@ -19,7 +19,7 @@ export const getPosts = () => {
 export const addPost = (data) => {
   return (dispatch) => {
     return axios
-      .post("https://redux-posts-rust.vercel.app/posts", data)
+      .post("https://redux-posts-rust.vercel.app/db.json/posts", data)
       .then((res) => {
         dispatch({ type: ADD_POST, payload: data });
       });
@@ -29,7 +29,7 @@ export const addPost = (data) => {
 export const editPost = (data) => {
   return (dispatch) => {
     return axios
-      .put(`https://redux-posts-rust.vercel.app/${data.id}`, data)
+      .put(`https://redux-posts-rust.vercel.app/db.json/posts/${data.id}`, data)
       .then((res) => {
         dispatch({ type: EDIT_POST, payload: data });
       });
@@ -39,7 +39,7 @@ export const editPost = (data) => {
 export const deletePost = (postId) => {
   return (dispatch) => {
     return axios
-      .delete(`https://redux-posts-rust.vercel.app/${postId}`)
+      .delete(`https://redux-posts-rust.vercel.app/db.json/posts/${postId}`)
       .then((res) => {
         dispatch({ type: DELETE_POST, payload: postId });
       });
@@ -49,7 +49,7 @@ export const deletePost = (postId) => {
 export const addPostLike = (data) => {
   return (dispatch) => {
     return axios
-      .put(`https://redux-posts-rust.vercel.app/${data.id}`, data)
+      .put(`https://redux-posts-rust.vercel.app/db.json/posts/${data.id}`, data)
       .then((res) => {
         dispatch({ type: ADD_POST_LIKE, payload: data });
       });
